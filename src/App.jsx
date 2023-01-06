@@ -1,20 +1,19 @@
-import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Card from "./components/card";
-import {
-  useGetPopularQuery,
-  useGetTopRatedQuery,
-  useGetTrendingQuery,
-} from "./features/apiSlice";
+import { Navbar } from "./components";
+import { Details, Favourite, Home, Movies } from "./pages";
 
 function App() {
-  const { data, isLoading, isSuccess } = useGetTopRatedQuery();
 
   return (
     <div className="App">
-      {isSuccess &&
-        data &&
-        data.results.map((movie) => <h1 key={movie.id}>{movie.title}</h1>)}
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/movies" element={<Movies/>}/>
+        <Route path="/favourite" element={<Favourite/>}/>
+        <Route path="/details/:id" element={<Details/>}/>
+      </Routes>
     </div>
   );
 }

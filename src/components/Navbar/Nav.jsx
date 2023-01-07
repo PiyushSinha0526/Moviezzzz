@@ -4,9 +4,6 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navLinkStyle = `text-gray-400 font-bold hover:text-black px-3 py-2 rounded-md text-base relative after:absolute after:-bottom-[0.6rem] after:left-0 after:w-0 after:h-1 after:bg-blue-400 after:hover:w-full after:transition-width after:delay-50 ease-in-out`;
-
   return (
     <div>
       <nav className="bg-transparent border-b-2">
@@ -22,15 +19,15 @@ function Nav() {
               </div>
               <div className="hidden md:flex items-center">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <NavLink to="/" className={navLinkStyle}>
+                  <NavLink to="/" className="navLinkLarge">
                     Home
                   </NavLink>
 
-                  <NavLink to="movies" className={navLinkStyle}>
+                  <NavLink to="movies" className="navLinkLarge">
                     Movies
                   </NavLink>
 
-                  <NavLink to="favourite" className={navLinkStyle}>
+                  <NavLink to="favourite" className="navLinkLarge">
                     Favourite
                   </NavLink>
                 </div>
@@ -103,9 +100,9 @@ function Nav() {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          {(ref) => (
+          {
             <div className="md:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <NavLink
                   to="/"
                   className={
@@ -129,11 +126,11 @@ function Nav() {
                   Favourites
                 </NavLink>
                 <NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
-                    Login
-                  </NavLink>
+                  Login
+                </NavLink>
               </div>
             </div>
-          )}
+          }
         </Transition>
       </nav>
     </div>

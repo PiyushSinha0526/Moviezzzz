@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
+import {RiZzzLine} from 'react-icons/ri'
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +12,14 @@ function Nav() {
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center justify-between w-full">
               <div className="flex-shrink-0">
-                <img
+                {/* <img
                   className="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                  src="https://drive.google.com/file/d/1OZwZFy9Hk4xqzHkOtPOKYKduiX4u1h_J/view?usp=share_link"
                   alt="Workflow"
-                />
+                /> */}
+                <RiZzzLine size={
+                  '2rem' 
+                }/>
               </div>
               <div className="hidden md:flex items-center">
                 <div className="ml-10 flex items-baseline space-x-4">

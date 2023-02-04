@@ -4,15 +4,14 @@ import { Navbar } from "./components";
 import { Details, Favourite, Home, Movies } from "./pages";
 
 function App() {
-
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route path="/movies" element={<Movies/>}/>
-        <Route path="/favourite" element={<Favourite/>}/>
-        <Route path="/details/:id" element={<Details/>}/>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/favourite" element={<Favourite />} />
+        <Route path="/details/:id" element={<Details />} />
       </Routes>
     </div>
   );

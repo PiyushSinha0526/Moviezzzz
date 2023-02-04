@@ -1,12 +1,14 @@
-import React from 'react'
-import { Navbar } from '../components'
+import React from "react";
+import Carousel from "../components/Carousel/Carousel";
+import { useGetTrendingQuery } from "../features/apiSlice";
 
 function Home() {
+  const { data: TrendingData, isLoading } = useGetTrendingQuery();
   return (
-    <div>
-      Home
-    </div>
-  )
+    <>
+      <Carousel slides={TrendingData} isLoading={isLoading}></Carousel>
+    </>
+  );
 }
 
-export default Home
+export default Home;

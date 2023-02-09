@@ -31,15 +31,10 @@ function Nav() {
                 <NavLink className="font-bold text-gray-400 border-2 border-blue-400 rounded-md px-4 py-1">
                   Login
                 </NavLink>
-                {/* <img
-                    className="w-8 h-8
-                   rounded-full border-2"
-                    src="https://loremflickr.com/320/240/paris,girl/all"
-                    alt="profile"
-                  /> */}
               </div>
             </div>
           </div>
+          {/* Mobile */}
           <div className=" -mr-2 flex md:hidden ">
             <button
               onClick={() => setIsOpen(!isOpen)}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 
 function Carousel({ slides, isLoading }) {
   const [currSlide, setCurrSlide] = useState(0);
@@ -13,6 +14,9 @@ function Carousel({ slides, isLoading }) {
     setCurrSlide((prev) =>
       prev === slides?.results.length - 1 ? 0 : prev + 1
     );
+  const hello = () => {
+    console.log("hello");
+  };
 
   return (
     <div className="relative overflow-hidden">
@@ -28,24 +32,39 @@ function Carousel({ slides, isLoading }) {
                 alt=""
                 className="object-cover h-screen min-w-full "
               />
-              <div className="absolute z-10 inset-0 w-full h-full bg-gradient-to-t from-black to-transparent"></div>
-              <div className="absolute top-0 h-full z-20 grid grid-rows-5 px-40 ">
-                <div className="row-start-2 row-end-4 text-left  ">
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute top-0 w-full h-full grid grid-rows-5 px-40 ">
+                <div className="row-start-2 row-end-4 text-left flex flex-col gap-4">
                   <span className="font-bold text-3xl text-white text-shadow">
-                    Release Date : {movie.release_date}
+                    Release Date :
+                    {movie.release_date
+                      ? movie.release_date
+                      : movie.first_air_date}
                   </span>
-                  <p className="w-3/5 text-white mt-6 text-xl text-shadow">
+                  <div className="text-white flex gap-4">
+                    <span>Media {movie.media_type}</span>
+                    <span>Language: {movie.original_language}</span>
+                  </div>
+                  <p className="w-3/5 text-white text-xl text-shadow">
                     {movie.overview}
                   </p>
-                  <button
-                    className="cursor-pointer mt-6 border-blue-400 border-2 px-6 py-2 pr-8 rounded-2xl font-bold relative
-                  "
-                  >
-                    More{" "}
-                    <span className="absolute right-[10px] top-3">
-                      <BsChevronCompactRight />
-                    </span>
-                  </button>
+                  <div className="flex items-center gap-4 text-white font-bold mt-6">
+                    <button
+                      className="relative cursor-pointer px-6 py-2 pr-8 border-2 rounded-2xl hover:border-blue-400 hover:text-blue-400 hover:scale-105"
+                      onClick={hello}
+                    >
+                      More
+                      <span className="absolute right-[10px] top-3 ">
+                        <BsChevronCompactRight />
+                      </span>
+                    </button>
+                    <button className="flex items-center justify-center gap-2 px-6 py-2 hover:outline outline-2 rounded-2xl outline-blue-400">
+                      <span>
+                        <FcLikePlaceholder color="" size={25} />
+                      </span>
+                      Add to favorites
+                    </button>
+                  </div>
                 </div>
                 <h3 className="row-start-5 text-6xl font-bold text-white text-right text-shadow-white">
                   {movie.title ? movie.title : movie.name}
@@ -54,16 +73,16 @@ function Carousel({ slides, isLoading }) {
             </div>
           ))}
       </div>
-      <div className="absolute inset-0 flex justify-between items-center ">
+      <div className="absolute inset-0 flex justify-between items-center pointer-events-none">
         <button
           onClick={prevSlide}
-          className="text-6xl font-bold p-2 active:scale-90 mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm s"
+          className="text-6xl font-bold p-2 active:scale-90 mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm pointer-events-auto"
         >
           <BsChevronCompactLeft color="white" />
         </button>
         <button
           onClick={nextSlide}
-          className="text-6xl font-bold p-2 active:scale-90 h-full mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm"
+          className="text-6xl font-bold p-2 active:scale-90 mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm pointer-events-auto"
         >
           <BsChevronCompactRight color="white" />
         </button>

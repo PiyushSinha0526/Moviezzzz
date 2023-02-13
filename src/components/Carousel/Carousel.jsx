@@ -13,9 +13,6 @@ function Carousel({ slides, isLoading, LanguagesData }) {
     setCurrSlide((prev) =>
       prev === slides?.results.length - 1 ? 0 : prev + 1
     );
-  const hello = () => {
-    console.log("hello");
-  };
   return (
     <div className="relative overflow-hidden">
       <div
@@ -34,24 +31,38 @@ function Carousel({ slides, isLoading, LanguagesData }) {
               <div className="absolute top-0 w-full h-full grid grid-rows-5 px-40 ">
                 <div className="row-start-2 row-end-4 text-left flex flex-col gap-4">
                   <p className=" text-3xl text-white text-shadow">
-                    Release Date : <span className="font-bold text-blue-400">{movie.release_date
-                      ? movie.release_date
-                      : movie.first_air_date}</span>
-                    
+                    Release Date :{" "}
+                    <span className="font-bold text-blue-400">
+                      {movie.release_date
+                        ? movie.release_date
+                        : movie.first_air_date}
+                    </span>
                   </p>
                   <div className="py-2 text-white capitalize text-shadow flex gap-6 ">
-                    <p>Media : <span className="font-bold text-blue-400">{movie.media_type}</span></p>
+                    <p>
+                      Media :{" "}
+                      <span className="font-bold text-blue-400">
+                        {movie.media_type}
+                      </span>
+                    </p>
                     |
-                    <p>Language : <span className="font-bold text-blue-400">{LanguagesData?.find(({ iso_639_1 }) => iso_639_1 === movie.original_language)?.english_name}</span></p>
+                    <p>
+                      Language :{" "}
+                      <span className="font-bold text-blue-400">
+                        {
+                          LanguagesData?.find(
+                            ({ iso_639_1 }) =>
+                              iso_639_1 === movie.original_language
+                          )?.english_name
+                        }
+                      </span>
+                    </p>
                   </div>
                   <p className="w-3/5 text-white text-xl text-shadow">
                     {movie.overview}
                   </p>
                   <div className="flex items-center gap-4 text-white font-bold mt-6">
-                    <button
-                      className="relative cursor-pointer px-6 py-2 pr-8 border-2 rounded-2xl hover:border-blue-400 hover:text-blue-400 hover:scale-105"
-                      onClick={hello}
-                    >
+                    <button className="relative cursor-pointer px-6 py-2 pr-8 border-2 rounded-2xl hover:border-blue-400 hover:text-blue-400 hover:scale-105">
                       More
                       <span className="absolute right-[10px] top-3 ">
                         <BsChevronCompactRight />

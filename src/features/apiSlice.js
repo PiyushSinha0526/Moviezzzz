@@ -35,6 +35,9 @@ export const moviesApi = createApi({
     getLanguages: builder.query({
       query: () => `configuration/languages?api_key=${apiKey}`,
     }),
+    getGenres: builder.query({
+      query: () => `genre/movie/list?api_key=${apiKey}&language=en-US`,
+    }),
   }),
 });
 
@@ -46,5 +49,6 @@ export const {
   useGetRecommendationsQuery,
   useGetDetailsQuery,
   useGetCreditsQuery,
-  useGetLanguagesQuery
+  useGetLanguagesQuery,
+  useGetGenresQuery,
 } = moviesApi;

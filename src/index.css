@@ -4,7 +4,7 @@
 
 @layer components {
   .navLinkLarge {
-    @apply text-gray-700 font-bold px-3 py-2 rounded-md text-base relative hover:text-black after:absolute after:-bottom-[0.6rem] after:left-0 after:w-0 after:h-1 after:bg-blue-400 after:hover:w-full after:transition-width ease-in-out;
+    @apply text-gray-700 font-bold px-3 py-2 rounded-md text-base relative hover:text-blue-400 after:absolute after:-bottom-[0.6rem] after:left-0 after:w-0 after:h-1 after:bg-blue-400 after:hover:w-full after:transition-width ease-in-out;
   }
 
   .text-shadow {
@@ -16,7 +16,7 @@
   }
 }
 .active {
-  color: rgb(0, 0, 0);
+  color: rgb(96 165 250);
 }
 .active::after {
   display: absolute;

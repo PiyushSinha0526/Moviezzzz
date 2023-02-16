@@ -27,7 +27,7 @@ function Card({ data }) {
               />
               <div className=" h-60 w-full"></div>
               <div className="text-base p-2 font-bold text-white">
-                <span className="tracking-wider">{res.title}</span>
+                <span className="tracking-wider">{res.title? res.title : res.name}</span>
               </div>
               <div className="absolute bottom-64 left-[0.125rem]">
                 <div className="relative w-12 h-12">

@@ -3,8 +3,8 @@ import { Card } from "../components";
 import { useGetPopularQuery } from "../features/apiSlice";
 
 function Movies() {
-  const [page, setPage] = useState('movie',1)
-  const { data, isLoading } = useGetPopularQuery(page);
+  const [page, setPage] = useState(1)
+  const { data, isLoading } = useGetPopularQuery({type: "movie", page: page});
 
   const paging =(i) => {
     if(page+i<1) return
@@ -13,7 +13,7 @@ function Movies() {
   }
 
   return (
-    <div className="bg-gray-900 00 min-h-screen py-16">
+    <div className="bg-gray-900 00 min-h-screen py-16 px-5">
       <div className="text-gray-300 w-full mt-6">
         <input
           type="text"

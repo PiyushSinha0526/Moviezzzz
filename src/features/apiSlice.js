@@ -12,26 +12,26 @@ export const moviesApi = createApi({
       query: () => `trending/all/day?api_key=${apiKey}`,
     }),
     getPopular: builder.query({
-      query: (type, page) =>
+      query: ({type, page}) =>
         `${type}/popular?api_key=${apiKey}&language=en-US&page=${page}`,
     }),
     getTopRated: builder.query({
       query: () => `movie/top_rated?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getSimilarMovies: builder.query({
-      query: (type, id) =>
+      query: ({type, id}) =>
         `${type}/${id}/similar?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getRecommendations: builder.query({
-      query: (type, id) =>
+      query: ({type, id}) =>
         `${type}/${id}/recommendations?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getDetails: builder.query({
-      query: (type, id) =>
+      query: ({type, id}) =>
         `${type}/${id}/?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getCredits: builder.query({
-      query: (type, id) =>
+      query: ({type, id}) =>
         `${type}/${id}/credits?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getLanguages: builder.query({

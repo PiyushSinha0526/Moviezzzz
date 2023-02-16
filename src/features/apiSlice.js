@@ -12,31 +12,33 @@ export const moviesApi = createApi({
       query: () => `trending/all/day?api_key=${apiKey}`,
     }),
     getPopular: builder.query({
-      query: (page) => `movie/popular?api_key=${apiKey}&language=en-US&page=${page}`,
+      query: (type, page) =>
+        `${type}/popular?api_key=${apiKey}&language=en-US&page=${page}`,
     }),
     getTopRated: builder.query({
       query: () => `movie/top_rated?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getSimilarMovies: builder.query({
-      query: (id) =>
-        `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`,
+      query: (type, id) =>
+        `${type}/${id}/similar?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getRecommendations: builder.query({
-      query: (id) =>
-        `movie/${id}/recommendations?api_key=${apiKey}&language=en-US&page=1`,
+      query: (type, id) =>
+        `${type}/${id}/recommendations?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getDetails: builder.query({
-      query: (id) => `movie/${id}/?api_key=${apiKey}&language=en-US&page=1`,
+      query: (type, id) =>
+        `${type}/${id}/?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getCredits: builder.query({
-      query: (id) =>
-        `movie/${id}/credits?api_key=${apiKey}&language=en-US&page=1`,
+      query: (type, id) =>
+        `${type}/${id}/credits?api_key=${apiKey}&language=en-US&page=1`,
     }),
     getLanguages: builder.query({
       query: () => `configuration/languages?api_key=${apiKey}`,
     }),
     getGenres: builder.query({
-      query: () => `genre/movie/list?api_key=${apiKey}&language=en-US`,
+      query: (type) => `genre/${type}/list?api_key=${apiKey}&language=en-US`,
     }),
   }),
 });

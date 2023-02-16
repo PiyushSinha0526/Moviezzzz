@@ -3,7 +3,7 @@ import { Card } from "../components";
 import { useGetPopularQuery } from "../features/apiSlice";
 
 function Movies() {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState('movie',1)
   const { data, isLoading } = useGetPopularQuery(page);
 
   const paging =(i) => {

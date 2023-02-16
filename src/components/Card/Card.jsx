@@ -1,38 +1,67 @@
 import React from "react";
-import { Star } from "../index";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 
-function Card({ data, Genres }) {
+function Card({ data }) {
+  const strokecolor = (ratingValue) => {
+    return ratingValue >= 7
+      ? "stroke-green-500"
+      : ratingValue >= 5 && ratingValue < 7
+      ? "stroke-yellow-500"
+      : ratingValue < 5
+      ? "stroke-red-500"
+      : "";
+  };
   return (
     <>
       {
-        <ul className="flex gap-y-24 gap-x-6 flex-wrap justify-center">
+        <ul className="flex gap-y-16 gap-x-6 flex-wrap justify-center">
           {data?.results?.map((res) => (
             <li
               key={res.id}
-              className="bg-gray-600 w-60 h-80 rounded-md flex flex-col justify-end items-center relative"
+              className="relative w-[15rem] h-80 bg-gray-800 rounded-md flex flex-col justify-start items-center hover:scale-105 ease-in-out duration-300"
             >
               <img
                 src={`https://image.tmdb.org/t/p/original${res.poster_path}`}
                 alt=""
-                className="h-72 absolute -top-16 rounded-md"
+                className="h-64 w-44 absolute -top-6 rounded-md"
               />
-              <div className="text-white pb-2 flex flex-col gap-2 justify-center items-center">
-                <div className="flex gap-3">
-                  <span className="flex gap-1 justify-center items-center text-yellow-500">
-                    <Star stars={res?.vote_average / 2} />
-                  </span>
-                  <span className=" font-bold">{res.vote_average}</span>
+              <div className=" h-60 w-full"></div>
+              <div className="text-base p-2 font-bold text-white">
+                <span className="tracking-wider">{res.title}</span>
+              </div>
+              <div className="absolute bottom-64 left-[0.125rem]">
+                <div className="relative w-12 h-12">
+                  <svg className="w-12 h-12 bg-gray-800 rotate-[270deg] outline outline-2 outline-gray-800 rounded-full">
+                    <circle
+                      cx={20}
+                      cy={20}
+                      r={20}
+                      className="w-12 h-12 fill-none stroke-2 stroke-gray-500 translate-x-1 translate-y-1"
+                      strokeDasharray="126"
+                      strokeDashoffset="0"
+                      strokeLinecap="round"
+                    ></circle>
+                    <circle
+                      cx={20}
+                      cy={20}
+                      r={20}
+                      className={`w-12 h-12 fill-none stroke-[3] translate-x-1 translate-y-1 ${strokecolor(
+                        res?.vote_average
+                      )}`}
+                      strokeDasharray="126"
+                      strokeDashoffset={
+                        126 - (126 * res.vote_average * 10) / 100
+                      }
+                      strokeLinecap="round"
+                    ></circle>
+                  </svg>
+                  <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center tracking-wide text-white">
+                    <h2>{res.vote_average}</h2>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2 justify-center px-2">
-                  {res.genre_ids.map((genId, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 outline outline-1 rounded-md"
-                    >
-                      {Genres?.genres?.find(({ id }) => id === genId)?.name}
-                    </span>
-                  ))}
-                </div>
+              </div>
+              <div className="absolute bottom-[4.5rem] right-1 p-2 bg-gray-800 rounded-full hover:scale-105  hover:border-2 border-red-300 active:scale-95 duration-300 ease-in-out ">
+                <FcLikePlaceholder size={28}/>
               </div>
             </li>
           ))}

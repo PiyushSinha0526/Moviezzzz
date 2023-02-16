@@ -22,6 +22,9 @@ function Nav() {
                 <NavLink to="movies" className="navLinkLarge">
                   Movies
                 </NavLink>
+                <NavLink to="tv" className="navLinkLarge">
+                  TV
+                </NavLink>
 
                 <NavLink to="favourite" className="navLinkLarge">
                   Favourite
@@ -108,6 +111,13 @@ function Nav() {
                 className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Movies
+              </NavLink>
+
+              <NavLink
+                to="tv"
+                className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                TV
               </NavLink>
 
               <NavLink

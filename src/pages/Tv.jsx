@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from 'react'
 import { Card } from "../components";
 import { useGetPopularQuery } from "../features/apiSlice";
 
-function Movies() {
+
+function Tv() {
   const [page, setPage] = useState(1)
   const { data, isLoading } = useGetPopularQuery(page);
+  const { data: Genres, isGenLoading } = useGetGenresQuery();
 
   const paging =(i) => {
     if(page+i<1) return
@@ -23,7 +25,7 @@ function Movies() {
       </div>
       {/* card */}
       <div className=" mt-16">
-        {!isLoading && <Card data={data} />}
+        {!isLoading && <Card data={data} Genres={!isGenLoading && Genres} />}
       </div>
       <div className="fixed left-0 right-0 bottom-6 text-black font-bold flex gap-2  justify-center">
         <button className="bg-blue-300 px-3 py-1 rounded-md tracking-wider" onClick={()=> paging(-1)}>Prev</button>
@@ -33,4 +35,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default Tv

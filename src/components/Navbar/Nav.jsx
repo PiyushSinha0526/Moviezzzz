@@ -6,7 +6,7 @@ import { RiZzzLine } from "react-icons/ri";
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="bg-transparent fixed w-full z-10 backdrop-blur-sm">
+    <nav className="bg-transparent fixed w-full z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center justify-between w-full">
@@ -19,7 +19,7 @@ function Nav() {
                   Home
                 </NavLink>
 
-                <NavLink to="movies" className="navLinkLarge">
+                <NavLink to="movie" className="navLinkLarge">
                   Movies
                 </NavLink>
                 <NavLink to="tv" className="navLinkLarge">
@@ -110,7 +110,7 @@ function Nav() {
                 to="movies"
                 className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Movies
+                Movie
               </NavLink>
 
               <NavLink

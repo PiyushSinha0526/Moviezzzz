@@ -28,7 +28,7 @@ export const moviesApi = createApi({
     }),
     getDetails: builder.query({
       query: ({type, id}) =>
-        `${type}/${id}/?api_key=${apiKey}&language=en-US&page=1`,
+        `${type}/${id}?api_key=${apiKey}&language=en-US`,
     }),
     getCredits: builder.query({
       query: ({type, id}) =>

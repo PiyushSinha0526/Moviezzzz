@@ -1,6 +1,6 @@
 const time = (min) => {
-    const hours = min/60;
-    const mins = min%60;
+    const hours = Math.floor(min/60);
+    const mins = Math.floor(min%60);
     return (<>{hours.toFixed()}H {mins}M</>)
 }
 time()

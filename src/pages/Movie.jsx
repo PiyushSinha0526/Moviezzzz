@@ -22,7 +22,15 @@ function Movie() {
         />
       </div>
       {/* card */}
-      <div className=" mt-16">{!isLoading && <Card data={data} />}</div>
+      <div className=" mt-16">
+        {!isLoading && (
+          <ul className="flex gap-y-16 gap-x-6 flex-wrap justify-center">
+            {data?.results?.map((res) => (
+              <Card data={res} key={res.id} />
+            ))}
+          </ul>
+        )}
+      </div>
       <div className="fixed left-0 right-0 bottom-6 text-black font-bold flex gap-2  justify-center">
         <button
           className="bg-blue-300 px-3 py-1 rounded-md tracking-wider"

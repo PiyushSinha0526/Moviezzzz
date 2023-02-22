@@ -85,7 +85,7 @@ function Main({ data }) {
       {data.production_companies && (
         <div>
           Companie(s) :
-          <div className="flex gap-10 justify-center ">
+          <div className="flex gap-10 justify-center flex-wrap">
             {data.production_companies.map((comp) => (
               <p
                 className="w-40  p-2 bg-gray-700 backdrop-blur-lg rounded-md text-center flex flex-col flex-wrap justify-between"

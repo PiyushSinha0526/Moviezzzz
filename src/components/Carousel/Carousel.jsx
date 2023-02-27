@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 function Carousel({ slides, isLoading, LanguagesData }) {
   const [currSlide, setCurrSlide] = useState(0);
@@ -20,10 +21,10 @@ function Carousel({ slides, isLoading, LanguagesData }) {
         style={{ transform: `translateX(-${currSlide * 100}%)` }}
       >
         {!isLoading &&
-          slides?.results.map((movie) => (
-            <div className="min-w-full relative" key={movie.id}>
+          slides?.results.map((data) => (
+            <div className="min-w-full relative" key={data.id}>
               <img
-                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
                 alt=""
                 className="object-cover h-screen min-w-full "
               />
@@ -33,16 +34,16 @@ function Carousel({ slides, isLoading, LanguagesData }) {
                   <p className=" text-3xl text-white text-shadow">
                     Release Date :{" "}
                     <span className="font-bold text-blue-400">
-                      {movie.release_date
-                        ? movie.release_date
-                        : movie.first_air_date}
+                      {data.release_date
+                        ? data.release_date
+                        : data.first_air_date}
                     </span>
                   </p>
                   <div className="py-2 text-white capitalize text-shadow flex gap-6 ">
                     <p>
                       Media :{" "}
                       <span className="font-bold text-blue-400">
-                        {movie.media_type}
+                        {data.media_type}
                       </span>
                     </p>
                     |
@@ -52,32 +53,29 @@ function Carousel({ slides, isLoading, LanguagesData }) {
                         {
                           LanguagesData?.find(
                             ({ iso_639_1 }) =>
-                              iso_639_1 === movie.original_language
+                              iso_639_1 === data.original_language
                           )?.english_name
                         }
                       </span>
                     </p>
                   </div>
                   <p className="w-3/5 text-white text-xl text-shadow">
-                    {movie.overview}
+                    {data.overview}
                   </p>
                   <div className="flex items-center gap-4 text-white font-bold mt-6">
-                    <button className="relative cursor-pointer px-6 py-2 pr-8 border-2 rounded-2xl hover:border-blue-400 hover:text-blue-400 hover:scale-105">
+                    <Link
+                      to={`${data.media_type}/details/${data.id}`}
+                      className="relative cursor-pointer px-6 py-2 pr-8 border-2 rounded-2xl hover:border-blue-400 hover:text-blue-400 hover:scale-105"
+                    >
                       More
                       <span className="absolute right-[10px] top-3 ">
                         <BsChevronCompactRight />
                       </span>
-                    </button>
-                    <button className="flex items-center justify-center gap-2 px-6 py-2 hover:outline outline-2 rounded-2xl outline-blue-400">
-                      <span>
-                        <FcLikePlaceholder color="" size={25} />
-                      </span>
-                      Add to favorites
-                    </button>
+                    </Link>
                   </div>
                 </div>
                 <h3 className="row-start-5 text-6xl font-bold text-white text-right text-shadow-white">
-                  {movie.title ? movie.title : movie.name}
+                  {data.title ? data.title : data.name}
                 </h3>
               </div>
             </div>

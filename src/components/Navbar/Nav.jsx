@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import { RiZzzLine } from "react-icons/ri";
+import { auth } from "../../config/firebase";
+import { signOut } from "firebase/auth";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const logout = async () => {
+    await signOut(auth);
+  };
   return (
     <nav className="bg-transparent fixed w-full z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -31,9 +37,15 @@ function Nav() {
                 </NavLink>
               </div>
               <div className="ml-2 flex gap-4 items-center">
-                <NavLink className="font-bold text-gray-400 border-2 border-blue-400 rounded-md px-4 py-1">
-                  Login
-                </NavLink>
+                {auth?.currentUser == null ? (
+                  <NavLink className="font-bold text-gray-400 border-2 border-blue-400 rounded-md px-4 py-1">
+                    Login
+                  </NavLink>
+                ) : (
+                  <NavLink className="font-bold text-gray-400 border-2 border-blue-400 rounded-md px-4 py-1" onClick={()=>logout()}>
+                    Logout
+                  </NavLink>
+                )}
               </div>
             </div>
           </div>
@@ -126,9 +138,11 @@ function Nav() {
               >
                 Favourites
               </NavLink>
-              <NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
+              {auth?.currentUser == null ?(<NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
                 Login
-              </NavLink>
+              </NavLink>):(<NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"onClick={()=>logout()} >
+                Logout
+              </NavLink>)}
             </div>
           </div>
         }

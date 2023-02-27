@@ -53,6 +53,7 @@ function Hero({ data }) {
                 <BiLinkExternal size={18} />
                 <a
                   href={data.homepage}
+                  target="_blank"
                   className="text-gray-600 text-xl font-bold"
                 >
                   Official Page

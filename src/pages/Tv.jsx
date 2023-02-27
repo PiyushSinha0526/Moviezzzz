@@ -4,8 +4,8 @@ import { useGetPopularQuery } from "../features/apiSlice";
 
 function Tv() {
   const [page, setPage] = useState(1);
-  const { data, isLoading } = useGetPopularQuery({type: "tv", page: page});
-  
+  const { data, isLoading } = useGetPopularQuery({ type: "tv", page: page });
+
   const paging = (i) => {
     if (page + i < 1) return;
     if (page + i > data?.total_pages) return;
@@ -22,13 +22,15 @@ function Tv() {
         />
       </div>
       {/* card */}
-      <div className=" mt-16">{!isLoading && (
+      <div className=" mt-16">
+        {!isLoading && (
           <ul className="flex gap-y-16 gap-x-6 flex-wrap justify-center">
             {data?.results?.map((res) => (
-              <Card data={res} key={res.id} />
+              <Card data={res} type="tv" key={res.id} />
             ))}
           </ul>
-        )}</div>
+        )}
+      </div>
       <div className="fixed left-0 right-0 bottom-6 text-black font-bold flex gap-2  justify-center">
         <button
           className="bg-blue-300 px-3 py-1 rounded-md tracking-wider"

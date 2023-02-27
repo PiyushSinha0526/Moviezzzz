@@ -11,7 +11,6 @@ function Movie() {
     if (page + i > data?.total_pages) return;
     setPage((prev) => prev + i);
   };
-
   return (
     <div className="bg-gray-900 00 min-h-screen py-16 px-5">
       <div className="text-gray-300 w-full mt-6">
@@ -25,9 +24,9 @@ function Movie() {
       <div className=" mt-16">
         {!isLoading && (
           <ul className="flex gap-y-16 gap-x-6 flex-wrap justify-center">
-            {data?.results?.map((res) => (
-              <Card data={res} key={res.id} />
-            ))}
+            {data?.results?.map((res) => {
+              return <Card data={res} type="movie" key={res.id} />;
+            })}
           </ul>
         )}
       </div>

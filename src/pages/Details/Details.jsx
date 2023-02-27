@@ -8,7 +8,7 @@ import Extra from "./Extra";
 function Details() {
   let { type, id } = useParams();
   const { data, isLoading } = useGetDetailsQuery({ type: type, id: id });
-
+  console.log(data)
   return (
     <div>
       {!isLoading && (
@@ -33,11 +33,3 @@ function Details() {
 }
 
 export default Details;
-
-// first_air_date
-// last_air_date
-// created_by
-// number_of_episodes
-// number_of_seasons
-// seasons
-// type

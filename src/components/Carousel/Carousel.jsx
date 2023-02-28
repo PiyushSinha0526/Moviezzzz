@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 function Carousel({ slides, isLoading, LanguagesData }) {

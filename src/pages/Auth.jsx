@@ -5,16 +5,23 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
+import { redirect, useNavigate } from "react-router-dom";
 
 function Auth() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(auth?.currentUser?.email);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const navigate = useNavigate();
 
   const signin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword).then(
+        (res) => {
+          navigate("/");
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -50,13 +57,13 @@ function Auth() {
           <input
             type="email"
             placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setLoginEmail(e.target.value)}
             className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
           />
           <input
             type="text"
             placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setLoginPassword(e.target.value)}
             className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
           />
           <button

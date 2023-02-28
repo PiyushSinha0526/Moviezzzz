@@ -1,11 +1,9 @@
 import React from "react";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import useGetList from "../../hooks/useGetList";
 import { addItem, removeItem, strokecolor } from "../../utils/index";
 
-function Card({ data, type }) {
-  const favourite = useGetList("favourite", type, [addItem, removeItem]);
+function Card({ data, type, favourite }) {
   const isfav = (id) => {
     return favourite?.includes(id);
   };

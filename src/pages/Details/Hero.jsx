@@ -1,10 +1,16 @@
 import React from "react";
 import { BiLinkExternal } from "react-icons/bi";
 import { BsChevronDoubleDown } from "react-icons/bs";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { strokecolor } from "../../utils/index";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import useRealTimeList from "../../hooks/useRealTimeList";
+import { addItem, removeItem, strokecolor } from "../../utils/index";
 
-function Hero({ data }) {
+function Hero({ data, type }) {
+  const favourite = useRealTimeList({ type: "favourite", media: type });
+
+  const isfav = (id) => {
+    return favourite?.includes(id);
+  };
   return (
     <>
       <div className="relative pt-16 h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white flex items-center justify-between ">
@@ -43,10 +49,23 @@ function Hero({ data }) {
             </div>
             <div className="text-white">{data.vote_count} VOTES</div>
             <button className="flex items-center justify-center gap-2 px-6 py-2 hover:outline outline-2 rounded-2xl outline-blue-400">
-              <span>
-                <FcLikePlaceholder color="" size={25} />
-              </span>
-              Add to favorites
+              {isfav(data.id) ? (
+                <span
+                  className="flex gap-2"
+                  onClick={(e) => removeItem(e, data.id, type)}
+                >
+                  <FcLike size={25} />
+                  remove from favourites
+                </span>
+              ) : (
+                <span
+                  className="flex gap-2"
+                  onClick={(e) => addItem(e, data.id, type)}
+                >
+                  <FcLikePlaceholder size={25} />
+                  Add to favourites
+                </span>
+              )}
             </button>
             {data.homepage && (
               <button className="gap-2 px-6 py-2 outline outline-2 rounded-2xl outline-gray-400 flex items-center">

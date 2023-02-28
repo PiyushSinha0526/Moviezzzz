@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Card } from "../components";
 import { useGetPopularQuery } from "../features/apiSlice";
+import useRealTimeList from "../hooks/useRealTimeList";
 
 function Movie() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetPopularQuery({ type: "movie", page: page });
+  const favourite = useRealTimeList({ type: "favourite", media: "movie" });
 
   const paging = (i) => {
     if (page + i < 1) return;
@@ -25,7 +27,14 @@ function Movie() {
         {!isLoading && (
           <ul className="flex gap-y-16 gap-x-6 flex-wrap justify-center">
             {data?.results?.map((res) => {
-              return <Card data={res} type="movie" key={res.id} />;
+              return (
+                <Card
+                  data={res}
+                  favourite={favourite}
+                  type="movie"
+                  key={res.id}
+                />
+              );
             })}
           </ul>
         )}

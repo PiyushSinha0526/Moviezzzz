@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components";
-import { Details, Favourite, Home, Movie, Tv } from "./pages";
+import { Details, Home, Movie, Tv, Library } from "./pages";
 import Auth from "./pages/Auth";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/movie" element={<Movie />} />
         <Route path="/tv" element={<Tv />} />
-        <Route path="/favourite" element={<Favourite />} />
+        <Route path="/library" element={<Library />} />
         <Route path="/auth" element={<Auth />} />
         <Route path=":type/details/:id" element={<Details />} />
       </Routes>

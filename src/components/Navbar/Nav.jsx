@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
-import { NavLink, redirect, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RiZzzLine } from "react-icons/ri";
 import { auth } from "../../config/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -41,8 +41,8 @@ function Nav() {
                   TV
                 </NavLink>
 
-                <NavLink to="favourite" className="navLinkLarge">
-                  Favourite
+                <NavLink to="library" className="navLinkLarge">
+                  Library
                 </NavLink>
               </div>
               <div className="ml-2 flex gap-4 items-center">
@@ -148,10 +148,10 @@ function Nav() {
               </NavLink>
 
               <NavLink
-                to="favourite"
+                to="library"
                 className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Favourites
+                Library
               </NavLink>
               {auth?.currentUser == null ? (
                 <NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">

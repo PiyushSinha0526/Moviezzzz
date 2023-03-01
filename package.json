@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
+    "@headlessui/react": "^1.7.12",
     "@reduxjs/toolkit": "^1.9.1",
     "dotenv": "^16.0.3",
     "firebase": "^9.17.1",

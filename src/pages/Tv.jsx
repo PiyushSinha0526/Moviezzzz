@@ -6,7 +6,7 @@ import useRealTimeList from "../hooks/useRealTimeList";
 function Tv() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetPopularQuery({ type: "tv", page: page });
-  const favourite = useRealTimeList({ type: "favourite", media: "tv" });
+  const fsData = useRealTimeList();
 
   const paging = (i) => {
     if (page + i < 1) return;
@@ -28,7 +28,7 @@ function Tv() {
         {!isLoading && (
           <ul className="flex gap-y-16 gap-x-6 flex-wrap justify-center">
             {data?.results?.map((res) => (
-              <Card data={res} favourite={favourite} type="tv" key={res.id} />
+              <Card data={res} favourite={fsData?.favourite?.tv} type="tv" key={res.id} />
             ))}
           </ul>
         )}

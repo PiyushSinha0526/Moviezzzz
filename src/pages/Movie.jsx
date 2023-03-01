@@ -6,8 +6,8 @@ import useRealTimeList from "../hooks/useRealTimeList";
 function Movie() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetPopularQuery({ type: "movie", page: page });
-  const favourite = useRealTimeList({ type: "favourite", media: "movie" });
-
+  const fsData = useRealTimeList();
+  
   const paging = (i) => {
     if (page + i < 1) return;
     if (page + i > data?.total_pages) return;
@@ -30,7 +30,7 @@ function Movie() {
               return (
                 <Card
                   data={res}
-                  favourite={favourite}
+                  favourite={fsData?.favourite?.movie}
                   type="movie"
                   key={res.id}
                 />

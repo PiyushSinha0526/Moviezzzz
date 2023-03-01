@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
 
-function useRealTimeList({ type, media }) {
+function useRealTimeList() {
   const [dataList, setDataList] = useState();
 
   useEffect(() => {
@@ -10,7 +10,7 @@ function useRealTimeList({ type, media }) {
     const unsub = onSnapshot(
       doc(db, "users", auth?.currentUser?.uid),
       (doc) => {
-        setDataList(doc?.data()?.[type]?.[media]);
+        setDataList(doc?.data());
       }
     );
     return () => {

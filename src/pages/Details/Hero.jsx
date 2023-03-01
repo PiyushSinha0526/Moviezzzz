@@ -6,10 +6,10 @@ import useRealTimeList from "../../hooks/useRealTimeList";
 import { addItem, removeItem, strokecolor } from "../../utils/index";
 
 function Hero({ data, type }) {
-  const favourite = useRealTimeList({ type: "favourite", media: type });
+  const fsData = useRealTimeList();
 
   const isfav = (id) => {
-    return favourite?.includes(id);
+    return fsData?.favourite?.[type].includes(id);
   };
   return (
     <>

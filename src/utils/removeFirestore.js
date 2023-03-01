@@ -8,10 +8,11 @@ const removeItem = async (e, item, type) => {
     await updateDoc(doc(db, "users", auth?.currentUser?.uid), {
       "favourite.movie": arrayRemove(item),
     });
+  } else if (type == "tv") {
+    await updateDoc(doc(db, "users", auth?.currentUser?.uid), {
+      "favourite.tv": arrayRemove(item),
+    });
   }
-  await updateDoc(doc(db, "users", auth?.currentUser?.uid), {
-    "favourite.tv": arrayRemove(item),
-  });
 };
 
 export default removeItem;

@@ -40,6 +40,9 @@ export const moviesApi = createApi({
     getGenres: builder.query({
       query: (type) => `genre/${type}/list?api_key=${apiKey}&language=en-US`,
     }),
+    getSingle: builder.query({
+      query: ({type, id}) => `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`,
+    }),
   }),
 });
 
@@ -53,4 +56,5 @@ export const {
   useGetCreditsQuery,
   useGetLanguagesQuery,
   useGetGenresQuery,
+  useGetSingleQuery
 } = moviesApi;

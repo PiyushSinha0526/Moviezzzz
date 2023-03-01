@@ -134,7 +134,7 @@ function Nav() {
               </NavLink>
 
               <NavLink
-                to="movies"
+                to="movie"
                 className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Movie

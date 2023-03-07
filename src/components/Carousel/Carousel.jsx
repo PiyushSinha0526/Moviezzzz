@@ -28,9 +28,9 @@ function Carousel({ slides, isLoading, LanguagesData }) {
                 className="object-cover h-screen min-w-full "
               />
               <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black to-transparent"></div>
-              <div className="absolute top-0 w-full h-full grid grid-rows-5 px-40 ">
-                <div className="row-start-2 row-end-4 text-left flex flex-col gap-4">
-                  <p className=" text-3xl text-white text-shadow">
+              <div className="absolute top-0 w-full h-full grid grid-rows-5 px-12 md:px-40 ">
+                <div className="row-start-2 row-end-4 text-left flex flex-col md:gap-4">
+                  <p className="text-xl md:text-3xl text-white text-shadow">
                     Release Date :{" "}
                     <span className="font-bold text-blue-400">
                       {data.release_date
@@ -75,7 +75,7 @@ function Carousel({ slides, isLoading, LanguagesData }) {
                     </Link>
                   </div>
                 </div>
-                <h3 className="row-start-5 text-6xl font-bold text-white text-right text-shadow-white">
+                <h3 className="row-start-5 text-4xl text-center font-bold text-white text-shadow-white sm:text-6xl md:text-right">
                   {data.title ? data.title : data.name}
                 </h3>
               </div>
@@ -85,13 +85,13 @@ function Carousel({ slides, isLoading, LanguagesData }) {
       <div className="absolute inset-0 flex justify-between items-center pointer-events-none">
         <button
           onClick={prevSlide}
-          className="text-6xl font-bold p-2 active:scale-90 mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm pointer-events-auto"
+          className="text-6xl font-bold active:scale-90 md:mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm pointer-events-auto"
         >
           <BsChevronCompactLeft color="white" />
         </button>
         <button
           onClick={nextSlide}
-          className="text-6xl font-bold p-2 active:scale-90 mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm pointer-events-auto"
+          className="text-6xl font-bold active:scale-90 md:mx-8 rounded-full hover:outline outline-2 outline-blue-400 hover:backdrop-blur-sm pointer-events-auto"
         >
           <BsChevronCompactRight color="white" />
         </button>

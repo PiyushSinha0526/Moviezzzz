@@ -4,7 +4,6 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import useRealTimeList from "../../hooks/useRealTimeList";
 import { addItem, removeItem, strokecolor } from "../../utils/index";
-
 function Hero({ data, type }) {
   const fsData = useRealTimeList();
 

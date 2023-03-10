@@ -1,51 +1,40 @@
 import React, { useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { Tab } from "@headlessui/react";
-import { useRef } from "react";
-import { useAuth } from "../context/authContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function Auth() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const emailSignUpRef = useRef();
-  const passwordSignUpRef = useRef();
-  const { login, signup } = useAuth();
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loadingUp, setLoadingUp] = useState(false);
-
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const navigate = useNavigate();
 
-  async function loginHandler(e) {
-    e.preventDefault();
+  const signin = async () => {
     try {
-      setError("");
-      setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/");
-    } catch {
-      setError("Failed to log in");
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword).then(
+        (res) => {
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    setLoading(false);
-  }
-
-  async function handleSignUp(e) {
-    e.preventDefault();
-    try {
-      setError("");
-      setLoadingUp(true);
-      await signup(
-        emailSignUpRef.current.value,
-        passwordSignUpRef.current.value
-      ).then(async (res) => {
+  const signup = async () => {
+    await createUserWithEmailAndPassword(auth, email, password).then(
+      async (res) => {
         await setDoc(doc(db, "users", auth?.currentUser?.uid), {
           username: username,
           favourite: {
@@ -61,13 +50,10 @@ function Auth() {
             tv: [],
           },
         });
-      });
-      navigate("/");
-    } catch {
-      setError("Failed to create an account");
-    }
-    setLoadingUp(false);
-  }
+        navigate("/");
+      }
+    );
+  };
 
   return (
     <div className="h-screen flex justify-center items-center bg-gray-800">
@@ -108,20 +94,17 @@ function Auth() {
                 <input
                   type="email"
                   placeholder="email"
-                  ref={emailRef}
-                  required
+                  onChange={(e) => setLoginEmail(e.target.value)}
                   className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                 />
                 <input
                   type="text"
                   placeholder="password"
-                  ref={passwordRef}
-                  required
+                  onChange={(e) => setLoginPassword(e.target.value)}
                   className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                 />
                 <button
-                  onClick={loginHandler}
-                  disabled={loading}
+                  onClick={signin}
                   className="text-white focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-500 hover:bg-blue-400 focus:ring-blue-600"
                 >
                   Sign in
@@ -141,20 +124,17 @@ function Auth() {
                 <input
                   type="email"
                   placeholder="email"
-                  ref={emailSignUpRef}
-                  required
+                  onChange={(e) => setEmail(e.target.value)}
                   className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                 />
                 <input
                   type="text"
                   placeholder="password"
-                  ref={passwordSignUpRef}
-                  required
+                  onChange={(e) => setPassword(e.target.value)}
                   className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                 />
                 <button
-                  onClick={handleSignUp}
-                  disabled={loadingUp}
+                  onClick={signup}
                   className="text-white focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-500 hover:bg-blue-400 focus:ring-blue-600"
                 >
                   Sign up

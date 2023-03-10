@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { RiZzzLine } from "react-icons/ri";
-import { auth } from "../../config/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { GrSearch } from "react-icons/gr";
+import { useAuth } from "../../context/authContext";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const [user, setUser] = useState();
+  const { logout, currentUser } = useAuth();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-  }, []);
+  async function logoutHandler(e) {
+    e.preventDefault();
+    setLoading(true);
+    await logout();
+    navigate("/");
+    setLoading(false);
+  }
 
-  const logout = async () => {
-    await signOut(auth);
-    navigate("/auth");
-  };
   return (
     <nav className="bg-transparent fixed w-full z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -28,8 +27,18 @@ function Nav() {
             <div className="flex-shrink-0">
               <RiZzzLine size={30} />
             </div>
-            <div className="hidden md:flex items-center">
-              <div className="ml-10 flex items-baseline space-x-4">
+            <div className="hidden md:flex items-center justify-end w-full">
+              <div className="ml-10 flex items-baseline justify-end space-x-4 w-full">
+                <div className="relative w-full max-w-md">
+                  <input
+                    className="w-full px-4 py-2 text-sm  rounded-lg  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Search ..."
+                    required
+                  />
+                  <button className="absolute right-2.5 bottom-1.5 ">
+                    <GrSearch size={25} />
+                  </button>
+                </div>
                 <NavLink to="/" className="navLinkLarge">
                   Home
                 </NavLink>
@@ -41,15 +50,17 @@ function Nav() {
                   TV
                 </NavLink>
 
-                <NavLink to="library" className="navLinkLarge">
-                  Library
-                </NavLink>
+                {currentUser && (
+                  <NavLink to="library" className="navLinkLarge">
+                    Library
+                  </NavLink>
+                )}
               </div>
               <div className="ml-2 flex gap-4 items-center">
-                {user?.email ? (
+                {currentUser?.email ? (
                   <NavLink
                     className="font-bold text-gray-400 border-2 border-blue-400 rounded-md px-4 py-1"
-                    onClick={() => logout()}
+                    onClick={(e) => logoutHandler(e)}
                   >
                     Logout
                   </NavLink>
@@ -147,22 +158,25 @@ function Nav() {
                 TV
               </NavLink>
 
-              <NavLink
-                to="library"
-                className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Library
-              </NavLink>
-              {auth?.currentUser == null ? (
-                <NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
-                  Login
+              {currentUser && (
+                <NavLink
+                  to="library"
+                  className="text-gray-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Library
                 </NavLink>
-              ) : (
+              )}
+
+              {currentUser?.email ? (
                 <NavLink
                   className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
-                  onClick={() => logout()}
+                  onClick={(e) => logoutHandler(e)}
                 >
                   Logout
+                </NavLink>
+              ) : (
+                <NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
+                  Login
                 </NavLink>
               )}
             </div>

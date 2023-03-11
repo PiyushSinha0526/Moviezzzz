@@ -5,35 +5,35 @@ function Extra({ data }) {
   return (
     <>
       <div className="flex flex-col gap-6">
-        {data.first_air_date && (
+        {data?.first_air_date && (
           <span>
             First air date:
-            <span className="text-3xl"> {data.first_air_date}</span>
+            <span className="text-3xl"> {data?.first_air_date}</span>
           </span>
         )}
-        {data.last_air_date && (
+        {data?.last_air_date && (
           <span>
             Last air date:
-            <span className="text-3xl"> {data.last_air_date}</span>
+            <span className="text-3xl"> {data?.last_air_date}</span>
           </span>
         )}
-        {data.number_of_episodes && (
+        {data?.number_of_episodes && (
           <span>
             Number of Episodes:
-            <span className="text-3xl"> {data.number_of_episodes}</span>
+            <span className="text-3xl"> {data?.number_of_episodes}</span>
           </span>
         )}
-        {data.number_of_seasons && (
+        {data?.number_of_seasons && (
           <span>
             Number of Seasons:
-            <span className="text-3xl"> {data.number_of_seasons}</span>
+            <span className="text-3xl"> {data?.number_of_seasons}</span>
           </span>
         )}
-        {data.seasons && (
+        {data?.seasons && (
           <div>
             Relation:
             <div className="flex gap-4 flex-wrap">
-              {data.seasons.map((sea) => (
+              {data?.seasons.map((sea) => (
                 <div
                   key={sea.id}
                   className="w-64 bg-gray-800 px-6 py-2 flex flex-col justify-between"
@@ -59,11 +59,11 @@ function Extra({ data }) {
             </div>
           </div>
         )}
-        {data.created_by && (
+        {data?.created_by && (
           <div>
             Created By:
             <div className="flex gap-6 text-center flex-wrap">
-              {data.created_by.map((cb) => (
+              {data?.created_by.map((cb) => (
                 <p key={cb.credit_id}>
                   <img
                     src={`https://image.tmdb.org/t/p/original${cb.profile_path}`}

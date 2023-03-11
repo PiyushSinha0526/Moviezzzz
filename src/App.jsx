@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar, PrivateRoute } from "./components";
 import { AuthProvider } from "./context/authContext";
-import { Details, Home, Movie, Tv, Library } from "./pages";
+import { Details, Home, Movie, Tv, Library, Search } from "./pages";
 import Auth from "./pages/Auth";
 
 function App() {
@@ -19,6 +19,8 @@ function App() {
           </Route>
           <Route path="/auth" element={<Auth />} />
           <Route path=":type/details/:id" element={<Details />} />
+          <Route path="search/:query" element={<Search />} />
+          <Route path="search/:query/:type/details/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
     </div>

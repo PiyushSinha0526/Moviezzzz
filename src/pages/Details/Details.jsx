@@ -14,7 +14,7 @@ function Details() {
       {!isLoading && (
         <div>
           <img
-            src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
             alt="background poster"
             className="object-cover min-w-full h-screen fixed -z-10"
           />

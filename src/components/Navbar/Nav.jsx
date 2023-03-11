@@ -10,6 +10,7 @@ function Nav() {
   const navigate = useNavigate();
   const { logout, currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState("");
 
   async function logoutHandler(e) {
     e.preventDefault();
@@ -34,10 +35,15 @@ function Nav() {
                     className="w-full px-4 py-2 text-sm  rounded-lg  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search ..."
                     required
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                   />
-                  <button className="absolute right-2.5 bottom-1.5 ">
+                  <NavLink
+                    to={`search/${query}`}
+                    className="absolute right-2.5 bottom-1.5"
+                  >
                     <GrSearch size={25} />
-                  </button>
+                  </NavLink>
                 </div>
                 <NavLink to="/" className="navLinkLarge">
                   Home

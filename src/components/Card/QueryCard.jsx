@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useGetSingleQuery } from "../../features/apiSlice";
-import useRealTimeList from "../../hooks/useRealTimeList";
 import noimage from "../../assets/noimage.png";
 
 function QueryCard({ type, id, category }) {
@@ -10,7 +9,7 @@ function QueryCard({ type, id, category }) {
     <>
       {!isLoading && (
         <Link to={`${type}/details/${data?.id}`}>
-          <div className="w-[280px] bg-gray-800 rounded-md flex gap-4">
+          <div className="min-w-full md:max-w-md md:w-full items-center bg-gray-800 rounded-md flex gap-4">
             <div>
               {data?.poster_path ? (
                 <img

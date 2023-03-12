@@ -23,7 +23,7 @@ function Main({ data }) {
         </div>
       </div>
       <div className="text-start ">
-        <span>Storyline</span>
+        {data?.overview && <span>Storyline</span>}
         <p className="text-gray-400">{data?.overview}</p>
       </div>
       <div className="flex gap-6">
@@ -42,7 +42,7 @@ function Main({ data }) {
         </span>
       </div>
       <div className="flex gap-2 items-baseline">
-        <span>Spoken Languages:</span>
+        {data?.spoken_languages && <span>Spoken Languages:</span>}
         {data?.spoken_languages.map((lang) => (
           <span key={lang.english_name} className="text-2xl">
             {lang.english_name},

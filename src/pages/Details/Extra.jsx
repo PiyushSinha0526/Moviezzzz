@@ -2,6 +2,7 @@ import React from "react";
 import noimage from "../../assets/noimage.png";
 
 function Extra({ data }) {
+  console.log(data);
   return (
     <>
       <div className="flex flex-col gap-6">
@@ -59,7 +60,7 @@ function Extra({ data }) {
             </div>
           </div>
         )}
-        {data?.created_by && (
+        {data.created_by.length != 0 && (
           <div>
             Created By:
             <div className="flex gap-6 text-center flex-wrap">

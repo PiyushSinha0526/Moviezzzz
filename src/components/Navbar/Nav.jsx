@@ -40,6 +40,7 @@ function Nav() {
                   />
                   <NavLink
                     to={`search/${query}`}
+                    onClick={() => setQuery("")}
                     className="absolute right-2.5 bottom-1.5"
                   >
                     <GrSearch size={25} />

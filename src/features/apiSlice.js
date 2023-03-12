@@ -44,12 +44,12 @@ export const moviesApi = createApi({
         `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`,
     }),
     getMovieSearch: builder.query({
-      query: ({ query }) =>
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`,
+      query: ({ query, page }) =>
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}`,
     }),
     getTvSearch: builder.query({
-      query: ({ query }) =>
-        `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}`,
+      query: ({ query, page }) =>
+        `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&page=${page}`,
     }),
   }),
 });

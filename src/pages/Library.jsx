@@ -1,5 +1,6 @@
 import { Tab } from "@headlessui/react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { HorizontalCard } from "../components";
 import useRealTimeList from "../hooks/useRealTimeList";
 
@@ -15,7 +16,6 @@ function Library() {
 
   return (
     <div className="bg-gray-900 00 min-h-screen py-20 px-5 text-white">
-      {/* <h1>{favourite?.username}</h1> */}
       <Tab.Group>
         <Tab.List className="w-fit flex mx-auto rounded-xl bg-blue-900/20 p-1 sm:w-full md:max-w-3xl">
           {categories.map((category) => (
@@ -77,7 +77,7 @@ function Library() {
                           </>
                         ))
                       ) : (
-                        <h1>nothing</h1>
+                        <h1 className="text-blue-200 font-bold text-center "> {type}(s) not added - To add <Link to={`/${type}`} className="text-blue-400 bg-gray-900 py-1 px-4 rounded-md animate-pulse">more</Link></h1>
                       )}
                     </Tab.Panel>
                   </Tab.Panels>

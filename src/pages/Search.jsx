@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import QueryCard from "../components/Card/QueryCard";
 import useRealTimeList from "../hooks/useRealTimeList";
 import { FcNext, FcPrevious } from "react-icons/fc";
 import {
   useGetMovieSearchQuery,
   useGetTvSearchQuery,
 } from "../features/apiSlice";
+import { Query } from "../components";
 
 function Search() {
   let { query } = useParams();
@@ -48,7 +48,7 @@ function Search() {
             </h3>
             <div className="h-80 overflow-y-auto flex flex-col w-full gap-4 grid-cols-2 md:grid md:w-full lg:grid-cols-3 border-4 p-4 rounded-md">
               {movies?.results?.map((res, idx) => (
-                <QueryCard
+                <Query
                   data={res}
                   favourite={fsData?.favourite?.movie}
                   type="movie"
@@ -83,7 +83,7 @@ function Search() {
             </h3>
             <div className="h-80 overflow-y-auto flex flex-col w-full gap-4 grid-cols-2 md:grid md:w-full lg:grid-cols-3 border-4 p-4 rounded-md">
               {tvs?.results?.map((res, idx) => (
-                <QueryCard
+                <Query
                   data={res}
                   favourite={fsData?.favourite?.movie}
                   type="tv"

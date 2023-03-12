@@ -1,8 +1,8 @@
 import React from "react";
 import noimage from "../../assets/noimage.png";
+import { QuickCard } from "../../components";
 
-function Extra({ data }) {
-  console.log(data);
+function Extra({ data, similar, recommend, Credit }) {
   return (
     <>
       <div className="flex flex-col gap-6">
@@ -60,11 +60,11 @@ function Extra({ data }) {
             </div>
           </div>
         )}
-        {data.created_by.length != 0 && (
+        {data?.created_by?.length > 0 && (
           <div>
             Created By:
             <div className="flex gap-6 text-center flex-wrap">
-              {data?.created_by.map((cb) => (
+              {data?.created_by?.map((cb) => (
                 <p key={cb.credit_id}>
                   <img
                     src={`https://image.tmdb.org/t/p/original${cb.profile_path}`}
@@ -73,6 +73,44 @@ function Extra({ data }) {
                   />
                   <span>{cb.name}</span>
                 </p>
+              ))}
+            </div>
+          </div>
+        )}
+        <div>
+          Cast:
+          <div className="pt-2 flex flex-wrap gap-4 md:grid grid-cols-3">
+            {Credit?.cast?.slice(0, 12).map((ca) => (
+              <div className="flex gap-3 items-center" key={ca.id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original${ca.profile_path}`}
+                  alt=""
+                  className="w-24 h-24 rounded-full object-cover origin-top"
+                />
+                <div className="flex flex-col">
+                  <span>{ca.original_name}</span>
+                  <span>{ca.character}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {recommend?.results.length > 0 && (
+          <div>
+            Recommend :
+            <div className="h-80 overflow-y-auto flex flex-col w-full gap-4 grid-cols-2 md:grid md:w-full lg:grid-cols-3 border-2 p-4 rounded-md">
+              {recommend?.results?.slice(0, 12).map((rec) => (
+                <QuickCard data={rec} key={rec.id} />
+              ))}
+            </div>
+          </div>
+        )}
+        {similar?.results.length > 0 && (
+          <div>
+            Similar :
+            <div className="h-80 overflow-y-auto flex flex-col w-full gap-4 grid-cols-2 md:grid md:w-full lg:grid-cols-3 border-2 p-4 rounded-md">
+              {similar?.results?.slice(0, 12).map((rec) => (
+                <QuickCard data={rec} key={rec.id} />
               ))}
             </div>
           </div>

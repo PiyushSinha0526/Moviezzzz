@@ -1,6 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useGetDetailsQuery } from "../../features/apiSlice";
+import {
+  useGetCreditsQuery,
+  useGetDetailsQuery,
+  useGetRecommendationsQuery,
+  useGetSimilarMoviesQuery,
+} from "../../features/apiSlice";
 import Hero from "./Hero";
 import Main from "./Main";
 import Extra from "./Extra";
@@ -8,6 +13,14 @@ import Extra from "./Extra";
 function Details() {
   let { type, id } = useParams();
   const { data, isLoading } = useGetDetailsQuery({ type: type, id: id });
+  const { data: similar, isLoading: isSimilarLoading } =
+    useGetSimilarMoviesQuery({ type: type, id: id });
+  const { data: recommend, isLoading: isRecommedLoading } =
+    useGetRecommendationsQuery({ type: type, id: id });
+  const { data: Credit, isLoading: isCreditLoading } = useGetCreditsQuery({
+    type: type,
+    id: id,
+  });
 
   return (
     <div>
@@ -25,7 +38,7 @@ function Details() {
           <div className="pb-10 text-left text-white mt-5 py-10  text-lg  max-w-7xl mx-auto backdrop-blur-sm rounded-lg px-4 sm:px-6 lg:px-8 ">
             <div className="flex flex-col gap-6">
               <Main data={data} />
-              <Extra data={data} />
+              <Extra data={data} similar={similar} recommend={recommend} Credit={Credit} />
             </div>
           </div>
         </div>

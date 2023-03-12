@@ -55,16 +55,16 @@ export const moviesApi = createApi({
 });
 
 export const {
-  useGetTrendingQuery,
-  useGetPopularQuery,
+  useGetTrendingQuery, //
+  useGetPopularQuery, //
   useGetTopRatedQuery,
   useGetSimilarMoviesQuery,
   useGetRecommendationsQuery,
-  useGetDetailsQuery,
   useGetCreditsQuery,
-  useGetLanguagesQuery,
-  useGetGenresQuery,
-  useGetSingleQuery,
-  useGetMovieSearchQuery,
-  useGetTvSearchQuery,
+  useGetDetailsQuery, //
+  useGetLanguagesQuery, //
+  // useGetGenresQuery,
+  useGetSingleQuery, //
+  useGetMovieSearchQuery, //
+  useGetTvSearchQuery, //
 } = moviesApi;

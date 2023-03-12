@@ -59,9 +59,7 @@ function Carousel({ slides, isLoading, LanguagesData }) {
                     </p>
                   </div>
                   <p className="w-full lg:w-3/5 text-white text-xl text-shadow ">
-                    <span className="line-clamp-7">
-                    {data.overview}
-                    </span>
+                    <span className="line-clamp-7">{data.overview}</span>
                   </p>
                   <div className="flex items-center gap-4 text-white font-bold mt-6">
                     <Link

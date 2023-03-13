@@ -1,5 +1,6 @@
 export { default as Navbar } from "./Navbar/Nav";
 export { default as Carousel } from "./Carousel/Carousel";
+export { default as MultiCarousel } from "./Carousel/MultiCarousel";
 export { default as Card } from "./Card/Card";
 export { default as PrivateRoute } from "./PrivateRoute/PrivateRoute";
 export { default as HorizontalCard } from "./Card/HorizontalCard";

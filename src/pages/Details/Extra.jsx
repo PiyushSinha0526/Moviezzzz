@@ -1,8 +1,8 @@
 import React from "react";
 import noimage from "../../assets/noimage.png";
-import { QuickCard } from "../../components";
+import { MultiCarousel, QuickCard } from "../../components";
 
-function Extra({ data, similar, recommend, Credit }) {
+function Extra({ data, type, similar, recommend, Credit }) {
   return (
     <>
       <div className="flex flex-col gap-6">
@@ -34,7 +34,7 @@ function Extra({ data, similar, recommend, Credit }) {
           <div>
             Relation:
             <div className="flex gap-4 flex-wrap">
-              {data?.seasons.map((sea) => (
+              {data?.seasons?.map((sea) => (
                 <div
                   key={sea.id}
                   className="w-64 bg-gray-800 px-6 py-2 flex flex-col justify-between"
@@ -60,7 +60,7 @@ function Extra({ data, similar, recommend, Credit }) {
             </div>
           </div>
         )}
-        {data?.created_by?.length > 0 && (
+        {data?.created_by && (
           <div>
             Created By:
             <div className="flex gap-6 text-center flex-wrap">
@@ -77,14 +77,27 @@ function Extra({ data, similar, recommend, Credit }) {
             </div>
           </div>
         )}
+        {similar?.results.length > 0 && (
+          <div>
+            <span className="text-xl text-blue-400">Similar :</span>
+            <MultiCarousel slides={similar} type={type} isLoading={false} />
+          </div>
+        )}
+        {recommend?.results.length > 0 && (
+          <div>
+            <span className="text-xl text-blue-400">Recommended :</span>
+            <MultiCarousel slides={recommend} type={type} isLoading={false} />
+          </div>
+        )}
+        
         <div>
-          Cast:
-          <div className="pt-2 flex flex-wrap gap-4 md:grid grid-cols-3">
+          <span className="text-xl text-blue-400">Cast:</span>
+          <div className="mt-4 flex flex-col gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3">
             {Credit?.cast?.slice(0, 12).map((ca) => (
               <div className="flex gap-3 items-center" key={ca.id}>
                 <img
                   src={`https://image.tmdb.org/t/p/original${ca.profile_path}`}
-                  alt=""
+                  alt="profile"
                   className="w-24 h-24 rounded-full object-cover origin-top"
                 />
                 <div className="flex flex-col">
@@ -95,26 +108,6 @@ function Extra({ data, similar, recommend, Credit }) {
             ))}
           </div>
         </div>
-        {recommend?.results.length > 0 && (
-          <div>
-            Recommend :
-            <div className="h-80 overflow-y-auto flex flex-col w-full gap-4 grid-cols-2 md:grid md:w-full lg:grid-cols-3 border-2 p-4 rounded-md">
-              {recommend?.results?.slice(0, 12).map((rec) => (
-                <QuickCard data={rec} key={rec.id} />
-              ))}
-            </div>
-          </div>
-        )}
-        {similar?.results.length > 0 && (
-          <div>
-            Similar :
-            <div className="h-80 overflow-y-auto flex flex-col w-full gap-4 grid-cols-2 md:grid md:w-full lg:grid-cols-3 border-2 p-4 rounded-md">
-              {similar?.results?.slice(0, 12).map((rec) => (
-                <QuickCard data={rec} key={rec.id} />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </>
   );

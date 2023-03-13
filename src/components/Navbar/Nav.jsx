@@ -21,7 +21,7 @@ function Nav() {
   }
 
   return (
-    <nav className="bg-transparent fixed w-full z-50 backdrop-blur-sm">
+    <nav className="bg-transparent fixed w-full px-2 z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center justify-between w-full">
@@ -174,15 +174,31 @@ function Nav() {
                 </NavLink>
               )}
 
+              <div className="relative w-full max-w-md mx-auto">
+                <input
+                  className="w-full px-4 py-2 text-sm  rounded-lg  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Search ..."
+                  required
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                <NavLink
+                  to={query !== "" && `search/${query}`}
+                  onClick={() => setQuery("")}
+                  className="absolute right-2.5 bottom-1.5 active:scale-95"
+                >
+                  <GrSearch size={25} />
+                </NavLink>
+              </div>
               {currentUser?.email ? (
                 <NavLink
-                  className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                  className="w-full max-w-md mx-auto text-white  bg-gray-800 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
                   onClick={(e) => logoutHandler(e)}
                 >
                   Logout
                 </NavLink>
               ) : (
-                <NavLink className="text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
+                <NavLink className="w-full max-w-md mx-auto text-white bg-blue-400 hover:text-blue-400 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">
                   Login
                 </NavLink>
               )}

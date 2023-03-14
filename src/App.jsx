@@ -4,11 +4,13 @@ import { Navbar, PrivateRoute } from "./components";
 import { AuthProvider } from "./context/authContext";
 import { Details, Home, Movie, Tv, Library, Search } from "./pages";
 import Auth from "./pages/Auth";
+import ScrollPageChange from "./utils/ScrollPageChange";
 
 function App() {
   return (
     <div className="App ">
       <AuthProvider>
+            <ScrollPageChange />
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import noimage from "../../assets/noimage.png";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
@@ -27,11 +28,18 @@ function MultiCarousel({ slides, type, isLoading }) {
           slides?.results.map((data) => (
             <Link to={`/${type}/details/${data.id}`}>
               <div className="min-w-[260px]" key={data.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
-                  alt=""
-                  className="object-cover w-72 h-80 rounded-md"
-                />
+                {data.poster_path != null ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+                    alt=""
+                    className="object-cover w-72 h-80 rounded-md border border-blue-400"
+                  />
+                ) : (
+                  <img
+                    src={noimage}
+                    className="h-80 object-cover border border-blue-400"
+                  />
+                )}
                 <div className=" ">
                   <h3 className="">{data.title ? data.title : data.name}</h3>
                   <div className="">

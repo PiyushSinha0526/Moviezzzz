@@ -1,6 +1,6 @@
 import React from "react";
 import noimage from "../../assets/noimage.png";
-import { MultiCarousel, QuickCard } from "../../components";
+import { MultiCarousel } from "../../components";
 
 function Extra({ data, type, similar, recommend, Credit }) {
   return (
@@ -43,10 +43,13 @@ function Extra({ data, type, similar, recommend, Credit }) {
                     <img
                       src={`https://image.tmdb.org/t/p/original${sea.poster_path}`}
                       alt="logo"
-                      className="h-64"
+                      className="h-64 border border-blue-400"
                     />
                   ) : (
-                    <img src={noimage} />
+                    <img
+                      src={noimage}
+                      className="h-64 border border-blue-400"
+                    />
                   )}
                   <div className="flex flex-col justify-center items-center">
                     <span className="bg-transparent  w-full text-center bg bg-black">
@@ -66,11 +69,18 @@ function Extra({ data, type, similar, recommend, Credit }) {
             <div className="flex gap-6 text-center flex-wrap">
               {data?.created_by?.map((cb) => (
                 <p key={cb.credit_id}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${cb.profile_path}`}
-                    alt={`profile picture of ${cb.name}`}
-                    className="w-52  "
-                  />
+                  {cb.profile_path != null ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${cb.profile_path}`}
+                      alt={`profile picture of ${cb.name}`}
+                      className="w-52 border border-blue-400"
+                    />
+                  ) : (
+                    <img
+                      src={noimage}
+                      className="w-52 border border-blue-400"
+                    />
+                  )}
                   <span>{cb.name}</span>
                 </p>
               ))}
@@ -89,17 +99,23 @@ function Extra({ data, type, similar, recommend, Credit }) {
             <MultiCarousel slides={recommend} type={type} isLoading={false} />
           </div>
         )}
-        
+
         <div>
           <span className="text-xl text-blue-400">Cast:</span>
           <div className="mt-4 flex flex-col gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3">
             {Credit?.cast?.slice(0, 12).map((ca) => (
               <div className="flex gap-3 items-center" key={ca.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/original${ca.profile_path}`}
-                  alt="profile"
-                  className="w-24 h-24 rounded-full object-cover origin-top"
-                />
+                <div className="w-24 h-24 rounded-full border border-blue-400">
+                  {ca.profile_path != null ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${ca.profile_path}`}
+                      alt="profile"
+                      className="w-24 h-24 rounded-full object-cover"
+                    />
+                  ) : (
+                    <img src={noimage} />
+                  )}
+                </div>
                 <div className="flex flex-col">
                   <span>{ca.original_name}</span>
                   <span>{ca.character}</span>

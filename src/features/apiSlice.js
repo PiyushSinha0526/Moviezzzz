@@ -36,9 +36,6 @@ export const moviesApi = createApi({
     getLanguages: builder.query({
       query: () => `configuration/languages?api_key=${apiKey}`,
     }),
-    getGenres: builder.query({
-      query: (type) => `genre/${type}/list?api_key=${apiKey}&language=en-US`,
-    }),
     getSingle: builder.query({
       query: ({ type, id }) =>
         `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`,
@@ -57,13 +54,12 @@ export const moviesApi = createApi({
 export const {
   useGetTrendingQuery, //
   useGetPopularQuery, //
-  useGetTopRatedQuery,
-  useGetSimilarMoviesQuery,
-  useGetRecommendationsQuery,
-  useGetCreditsQuery,
+  // useGetTopRatedQuery,
+  useGetSimilarMoviesQuery, //
+  useGetRecommendationsQuery, //
+  useGetCreditsQuery, //
   useGetDetailsQuery, //
   useGetLanguagesQuery, //
-  // useGetGenresQuery,
   useGetSingleQuery, //
   useGetMovieSearchQuery, //
   useGetTvSearchQuery, //

@@ -21,7 +21,6 @@ function Search() {
     query: query,
     page: pageTv,
   });
-  if (!isMovieLoading) console.log(movies);
   const fsData = useRealTimeList();
 
   const changeMoviesPage = (i) => {

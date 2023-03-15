@@ -18,9 +18,9 @@ function Library() {
     <div className="bg-gray-900 00 min-h-screen py-20 px-5 text-white">
       <Tab.Group>
         <Tab.List className="w-fit flex mx-auto rounded-xl bg-blue-900/20 p-1 sm:w-full md:max-w-3xl">
-          {categories.map((category) => (
+          {categories.map((category, idx) => (
             <Tab
-              key={category}
+              key={category+idx}
               className={({ selected }) =>
                 classNames(
                   "w-24 rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700 capitalize sm:w-full",
@@ -40,9 +40,9 @@ function Library() {
             <Tab.Panel key={idx}>
               <Tab.Group>
                 <Tab.List className="w-fit mx-auto flex rounded-xl bg-blue-900/20 sm:w-full md:max-w-3xl">
-                  {types.map((type) => (
+                  {types.map((type,idx) => (
                     <Tab
-                      key={type}
+                      key={type+idx}
                       className={({ selected }) =>
                         classNames(
                           "w-28 sm:w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700 capitalize",
@@ -57,10 +57,10 @@ function Library() {
                   ))}
                 </Tab.List>
 
-                {types.map((type) => (
-                  <Tab.Panels className="mt-2 text-gray-800" key={type}>
+                {types.map((type, idx) => (
+                  <Tab.Panels className="mt-2 text-gray-800" key={type+idx}>
                     <Tab.Panel
-                      key={idx}
+                      key={type+idx}
                       className={classNames(
                         "rounded-xl bg-gray-700 p-3",
                         "lg:grid grid-cols-2 flex gap-3 flex-wrap justify-center"

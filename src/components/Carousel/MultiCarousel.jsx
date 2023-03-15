@@ -4,7 +4,6 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 function MultiCarousel({ slides, type, isLoading }) {
-  console.log(slides);
   const [currSlide, setCurrSlide] = useState(0);
   const prevSlide = () =>
     setCurrSlide((prev) => (prev - 1 < 0 ? prev : prev - 1));

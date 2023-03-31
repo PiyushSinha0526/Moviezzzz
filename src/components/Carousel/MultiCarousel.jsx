@@ -25,8 +25,8 @@ function MultiCarousel({ slides, type, isLoading }) {
       >
         {!isLoading &&
           slides?.results.map((data) => (
-            <Link to={`/${type}/details/${data.id}`}>
-              <div className="min-w-[260px]" key={data.id}>
+            <Link to={`/${type}/details/${data.id}`} key={data.id}>
+              <div className="min-w-[260px]">
                 {data.poster_path != null ? (
                   <img
                     src={`https://image.tmdb.org/t/p/original${data.poster_path}`}

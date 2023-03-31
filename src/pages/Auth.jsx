@@ -70,7 +70,12 @@ function Auth() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-800">
+    <div className="h-screen flex flex-col justify-center items-center bg-gray-800">
+      <p className="text-white flex flex-col">
+        dummy account
+        <span>email: testing@gmail.com</span>
+        <span>password: Testing@1</span>
+      </p>
       <div className="w-full max-w-sm px-2 py-16 sm:px-0">
         <Tab.Group>
           <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1 transi">

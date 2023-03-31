@@ -2,8 +2,11 @@ import React from "react";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { addItem, removeItem, strokecolor } from "../../utils/index";
+import { useAuth } from "../../context/authContext";
 
 function Card({ data, type, favourite }) {
+  const { currentUser } = useAuth();
+
   const isfav = (id) => {
     return favourite?.includes(id);
   };
@@ -65,10 +68,14 @@ function Card({ data, type, favourite }) {
                   onClick={(e) => removeItem(e, data.id, type)}
                 />
               ) : (
-                <FcLikePlaceholder
-                  size={28}
-                  onClick={(e) => addItem(e, data.id, type)}
-                />
+                <>
+                  {currentUser?.id && (
+                    <FcLikePlaceholder
+                      size={28}
+                      onClick={(e) => addItem(e, data.id, type)}
+                    />
+                  )}
+                </>
               )}
             </div>
           </Link>

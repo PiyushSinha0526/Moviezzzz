@@ -1,6 +1,6 @@
+import "./App.css";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Navbar, PrivateRoute } from "./components";
 import { AuthProvider } from "./context/authContext";
 import Auth from "./pages/Auth";

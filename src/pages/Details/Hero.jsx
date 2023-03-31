@@ -4,7 +4,9 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import useRealTimeList from "../../hooks/useRealTimeList";
 import { addItem, removeItem, strokecolor } from "../../utils/index";
+import { useAuth } from "../../context/authContext";
 function Hero({ data, type }) {
+  const { currentUser } = useAuth();
   const fsData = useRealTimeList();
 
   const isfav = (id) => {
@@ -24,7 +26,9 @@ function Hero({ data, type }) {
           {data?.tagline && (
             <span className="font-bold text-left">
               Tagline:{" "}
-              <span className="text-blue-400 text-base sm:text-2xl md:text-3xl">{data?.tagline}</span>
+              <span className="text-blue-400 text-base sm:text-2xl md:text-3xl">
+                {data?.tagline}
+              </span>
             </span>
           )}
           <div className=" flex flex-wrap items-center gap-4">
@@ -57,13 +61,17 @@ function Hero({ data, type }) {
                   remove from favourites
                 </span>
               ) : (
-                <span
-                  className="flex gap-2"
-                  onClick={(e) => addItem(e, data?.id, type)}
-                >
-                  <FcLikePlaceholder size={25} />
-                  Add to favourites
-                </span>
+                <>
+                  {currentUser?.id && (
+                    <span
+                      className="flex gap-2"
+                      onClick={(e) => addItem(e, data?.id, type)}
+                    >
+                      <FcLikePlaceholder size={25} />
+                      Add to favourites
+                    </span>
+                  )}
+                </>
               )}
             </button>
             {data?.homepage && (

@@ -26,12 +26,12 @@ function Details() {
   return (
     <div>
       {!isLoading && (
-        <div>
+        <div className="bg-gray-900">
           {data?.backdrop_path && (
             <img
               src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
               alt="background poster"
-              className="object-cover min-w-full h-screen min-h-full  fixed -z-10"
+              className="object-cover min-w-full h-screen min-h-full bg-gray-900  fixed -z-10"
             />
           )}
           <div className="fixed -z-10 inset-0 w-full h-screen min-h-full bg-gradient-to-t from-black to-transparent"></div>

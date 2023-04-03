@@ -69,7 +69,7 @@ function Card({ data, type, favourite }) {
                 />
               ) : (
                 <>
-                  {currentUser?.id && (
+                  {currentUser && (
                     <FcLikePlaceholder
                       size={28}
                       onClick={(e) => addItem(e, data.id, type)}

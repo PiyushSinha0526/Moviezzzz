@@ -62,7 +62,7 @@ function Hero({ data, type }) {
                 </span>
               ) : (
                 <>
-                  {currentUser?.id && (
+                  {currentUser && (
                     <span
                       className="flex gap-2"
                       onClick={(e) => addItem(e, data?.id, type)}
